@@ -5,7 +5,7 @@ import numpy as np
 
 res = []
 
-with open('Alignment.json') as f:
+with open('Alignment1.json') as f:
         results = json.load(f)
 
 for read in results['BlastOutput2']:
@@ -19,5 +19,5 @@ for read in results['BlastOutput2']:
 
         res.append(top_identity)
 
-    print(res)
-    print(np.mean(res))
+print(res)
+print(np.mean(res))
