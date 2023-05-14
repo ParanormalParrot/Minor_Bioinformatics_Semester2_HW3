@@ -5,7 +5,7 @@ import numpy as np
 
 res = []
 
-with open('Alignment1.json') as f:
+with open('Alignment_2.json') as f:
         results = json.load(f)
 
 for read in results['BlastOutput2']:
