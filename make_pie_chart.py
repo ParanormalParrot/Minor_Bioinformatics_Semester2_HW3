@@ -13,9 +13,9 @@ with open('655PCY1D016-Alignment.json') as f:
 for read in results['BlastOutput2']:
     read_name = read['report']['results']['search']['query_title']
 
-    hits = [hit for hit in read['report']['results']['search']['hits'] if float(hit['hsps'][0]['bit_score']) >= 160] # 181.623 for all
+    hits = [hit for hit in read['report']['results']['search']['hits'] if
+            float(hit['hsps'][0]['bit_score']) >= 160]  # 181.623 for all
 
-     # Get the top hit and extract the scientific name
     if hits:
         top_hit = hits[0]['description'][0]['sciname']
         top_score = hits[0]['hsps'][0]['bit_score']
@@ -37,24 +37,27 @@ for item in pie_data:
 
 labels = counts.keys()
 sizes = counts.values()
-labels = [label for label in labels ]
+labels = [label for label in labels]
 
 num_labels = len(labels)
 
-cmap = cm.get_cmap('tab20', num_labels+9)
+cmap = cm.get_cmap('tab20', num_labels + 9)
 color_dict = {}
 for i, label in enumerate(labels):
     color_dict[label] = cmap(i)
 
+
 def autopct_fn(value):
     return f'{value:.1f}%'
+
 
 sizes = counts.values()
 colors = [color_dict[label] for label in labels]
 
 colors = plt.cm.Set3.colors[:len(labels)]
 
-myexplode = explode = [0.2 if label.startswith('Canis') or label.startswith('Felis') or label.startswith('Lynx') else 0 for label in labels]
+myexplode = explode = [0.2 if label.startswith('Canis') or label.startswith('Felis') or label.startswith('Lynx') else 0
+                       for label in labels]
 wedgeprops = {'linewidth': 10, 'edgecolor': 'white'}
 
 plt.pie(sizes, labels=labels, colors=colors, autopct=autopct_fn, explode=myexplode)
